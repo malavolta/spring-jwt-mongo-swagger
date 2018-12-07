@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+api-info:
+  security-constants:
+    secret: SecretKeyToGenJWTs
+    expiration-time: 864_000_000
+    token-prefix: Bearer
+    header-string: Authorization
+  endpoints:
+    open:
+      actuator-endpoint: /actuator/**
+      swagger2-endpoint: /v2/api-docs
+  documentation:
+    title: API SINIESTROS
+    description: Microservicio Siniestros, Habilitado para dejar los denuncios en sistema legado
+    version: versión 1
+    terms-of-service-url:
+    contact:
+      name: Celula Chile
+      url: www.falabella.cl
+      email: CelulaAgilChile@falabella.cl
+    license:
+    license-url:
+
+security:
+  ignored: /**
+  jwt:
+    token:
+      secret-key: secret-key
+      expire-length: 36000
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'health'
+
+spring:
+  profiles:
+    active: staging
+  data:
+    mongodb:
+      uri: mongodb://USER_DB:PASSWORD_DB@URL_HOST/BD_NAME?ssl=true&authSource=admin&serverSelectionTryOnce=false&serverSelectionTimeoutMS=15000
